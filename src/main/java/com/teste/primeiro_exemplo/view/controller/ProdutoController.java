@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.teste.primeiro_exemplo.services.ProdutoService;
-import com.teste.primeiro_exemplo.shared.ProdutoDTO;
+import com.teste.primeiro_exemplo.shared.Temp1;
 import com.teste.primeiro_exemplo.view.model.ProdutoRequest;
 import com.teste.primeiro_exemplo.view.model.ProdutoResponse;
 
@@ -34,7 +34,7 @@ public class ProdutoController {
 
     @GetMapping
     public ResponseEntity<List<ProdutoResponse>> obterTodos() {
-        List<ProdutoDTO> produtos = produtoService.obterTodos();
+        List<Temp1> produtos = produtoService.obterTodos();
 
         List<ProdutoResponse> resposta = produtos.stream()
                 .map(produtoDto -> modelMapper.map(produtoDto, ProdutoResponse.class))
@@ -45,7 +45,7 @@ public class ProdutoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Optional<ProdutoResponse>> obterPorId(@PathVariable Integer id) {
-        Optional<ProdutoDTO> produto = produtoService.obterPorId(id);
+        Optional<Temp1> produto = produtoService.obterPorId(id);
 
         Optional<ProdutoResponse> resposta = produto.map(dto -> modelMapper.map(dto, ProdutoResponse.class));
 
@@ -55,10 +55,10 @@ public class ProdutoController {
     @PostMapping
     public ResponseEntity<ProdutoResponse> adicionar(@RequestBody ProdutoRequest produtoReq) {
         // Converte Request em DTO
-        ProdutoDTO dtoRequest = modelMapper.map(produtoReq, ProdutoDTO.class);
+        Temp1 dtoRequest = modelMapper.map(produtoReq, Temp1.class);
 
         // Manda pro Service salvar e pega o retorno
-        ProdutoDTO dtoResponse = produtoService.adicionar(dtoRequest);
+        Temp1 dtoResponse = produtoService.adicionar(dtoRequest);
 
         // Converte o DTO salvo em Response
         ProdutoResponse resposta = modelMapper.map(dtoResponse, ProdutoResponse.class);
@@ -77,10 +77,10 @@ public class ProdutoController {
     @PutMapping("/{id}")
     public ResponseEntity<ProdutoResponse> atualizar(@RequestBody ProdutoRequest produtoReq, @PathVariable Integer id) {
         // Converte Request em DTO
-        ProdutoDTO dtoRequest = modelMapper.map(produtoReq, ProdutoDTO.class);
+        Temp1 dtoRequest = modelMapper.map(produtoReq, Temp1.class);
 
         // Manda pro Service atualizar
-        ProdutoDTO dtoResponse = produtoService.atualizar(id, dtoRequest);
+        Temp1 dtoResponse = produtoService.atualizar(id, dtoRequest);
 
         // Converte o DTO atualizado em Response
         ProdutoResponse resposta = modelMapper.map(dtoResponse, ProdutoResponse.class);

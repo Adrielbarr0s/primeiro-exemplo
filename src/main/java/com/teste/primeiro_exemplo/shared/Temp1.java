@@ -1,6 +1,6 @@
 package com.teste.primeiro_exemplo.shared;
 
-public class ProdutoDTO {
+public class Temp1 {
 
     private Integer id;
 
